@@ -1,9 +1,11 @@
-# 🧩 About Project 
+ <h1 align="center">Grocery Sales Dataset</h1> 
+ 
+## 🧩 About Project 
 This project presents a relational PostgreSQL database designed to analyze a grocery sales dataset sourced from Kaggle. The dataset captures real-world transactional activity and models key entities including sales, customers, products, employees, and geographic regions across 128 days. Through a series of business-driven SQL queries, the project explores core analytical questions related to revenue trends, product performance, customer segmentation, employee effectiveness, and regional sales distribution.
 
 🔗 Dataset Source: [Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14)
 
-# 💡Objectives
+## 💡Objectives
 
 | Objective | Updated Description                                                                 |
 |-----------|--------------------------------------------------------------------------------------|
@@ -14,13 +16,13 @@ This project presents a relational PostgreSQL database designed to analyze a gro
 | **Q5**    | Analyze regional sales across cities and countries to identify top-performing markets. |
 
 
-# 🛠️ Database Setup & Data Preparation
-## 🗃️ Step 1: Creating the PostgreSQL Database 
+## 🛠️ Database Setup & Data Preparation
+### 🗃️ Step 1: Creating the PostgreSQL Database 
 Created an empty PostgreSQL database named "grocery" using:
 ```sql
 CREATE DATABASE grocery;
 ```
-## 📐 Step 2: Designing the Schema & Creating Tables
+### 📐 Step 2: Designing the Schema & Creating Tables
 The database schema was designed using appropriate data types, primary keys, and foreign keys to maintain referential integrity. Tables include sales, products, categories, customers, employees, cities and countries. 
 
 Example snippet:
@@ -41,7 +43,7 @@ CREATE TABLE sales (
   );
 ```
 - **🔗 Related SQL File:** [**Create_Tables.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Create_Tables.sql)
-## 📥 Step 3: Importing CSV Data into Tables
+### 📥 Step 3: Importing CSV Data into Tables
 All tables were populated with real CSV data using PostgreSQL's efficient COPY command.
 
 ```text
@@ -55,9 +57,9 @@ COMMIT;
 
 Wapping the commands in BEGIN...COMMIT block is to ensure transactional integrity.
 
-# 💻 Analytical Queries & Key Insights
+## 💻 Analytical Queries & Key Insights
 The analysis phase focused on answering real business questions using SQL queries. The focus is on SQL but simple illustrations are also provided for visualizing the query outputs in some cases.
-## 📈 Q1: Analyze Sales Performance Over Time
+### 📈 Q1: Analyze Sales Performance Over Time
 Before getting started with different tasks related to revenue, the total price column should be calculated as it is empty. Based on columns available in sales, and product tables, the values are calculated and inserted into table via the query below
 ```sql
 UPDATE sales
@@ -88,7 +90,7 @@ Key outcomes:
   
 🔗 Related SQL File: [**Q1.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q1.sql)
  
-## 🔍 Q2: Analyze Product Performance by Volume and Revenue
+### 🔍 Q2: Analyze Product Performance by Volume and Revenue
 The example query below shows how the top 10 highest-demand products are characterized based on the number of sold products.
 ```sql
 -- Top 10 Highest-demand Products
@@ -113,7 +115,7 @@ Key outcomes:
 🔗 Related SQL File: [**Q2.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q2.sql)
 
 
-## 🛒 Q3: Segment Customers and Analyze Order Metrics
+### 🛒 Q3: Segment Customers and Analyze Order Metrics
 The customers are classified based on their total expenditure. For this purpose, the total spending of each customer is calculated, and then based on 25% and 75% percentile thresholds, customers are placed into three buckets or groups including low spenders, mid-tier spenders, and high-value customers.
 ```sql
 WITH per_customer AS (
@@ -158,7 +160,7 @@ Key outcomes:
 🔗 Related SQL File: [**Q3.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q3.sql)
 
 
-## 🧑‍💼 Q4: Evaluate Sales Staff Performance and Experience Impact
+### 🧑‍💼 Q4: Evaluate Sales Staff Performance and Experience Impact
 This query extracts the top three employees ranked by their average daily revenue, using distinct workdays for accuracy.
 
 ```sql
@@ -189,7 +191,7 @@ Key outcomes:
 🔗 Related SQL Files: [**Q4_part1.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part1.sql), [**Q4_part2.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part2.sql), [**Q4_part3.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part3.sql)
 
 
-## 🌍 Q5: Assess Regional Sales Performance Across Cities and Countries
+### 🌍 Q5: Assess Regional Sales Performance Across Cities and Countries
 The following query retrieves the top five cities by total revenue.
 
 ```sql
@@ -216,7 +218,7 @@ Key outcomes:
 🔗 Related SQL File: [**Q5.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q5.sql)
 
 
-# 📌 Conclusion & Strategic Recommendations
+## 📌 Conclusion & Strategic Recommendations
 
 This project highlights the analytical value of well-structured SQL queries in uncovering actionable insights from transactional data. Over 6.7 million sales records were processed to reveal key trends:
 
