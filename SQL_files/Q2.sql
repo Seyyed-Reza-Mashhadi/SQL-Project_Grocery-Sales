@@ -22,7 +22,7 @@ LIMIT 10;
 
 
 
--- top 10 most demanded products
+-- top 10 highest-demand products
 
 SELECT 
     products.product_name,
@@ -33,7 +33,7 @@ GROUP BY products.product_name
 ORDER BY n_sold_items DESC  
 LIMIT 10;
 
--- top 10 least demanded products
+-- top 10 lowest-demand products
 SELECT 
     products.product_name,
     Count(sales.product_id) AS n_sold_items   -- number of sold items

@@ -14,3 +14,4 @@ COPY sales_data (sale_id, employee_id, customer_id, product_id, quantity, discou
 COMMIT;
 
 "
+

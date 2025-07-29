@@ -11,8 +11,7 @@ ORDER BY total_purchase DESC
 LIMIT 10;
 
 /* Classifying customers based on their total spendings. The total spendings are calculated for each customer, 
-   and the Q0.25 and Q0.75 quartiles are used to classify customers into three segments: Occasional customers,
-   active customers, and core customers. */
+   and the Q0.25 and Q0.75 quartiles are used to classify customers into three segments. */
 
 WITH per_customer AS (
   SELECT 
@@ -32,9 +31,9 @@ SELECT
     pc.customer_id,
     pc.total_revenue,
     CASE
-        WHEN pc.total_revenue <= q[1] THEN 'Occasional Customers'   -- min < x <= Q25
-        WHEN pc.total_revenue <= q[2] THEN 'Active Customers'     -- Q25 < x <= Q75
-        ELSE 'Core Customers'                                     -- Q75 < x <= max
+        WHEN pc.total_revenue <= q[1] THEN 'Low Spenders'   -- min < x <= Q25
+        WHEN pc.total_revenue <= q[2] THEN 'Mid-Tier Spenders'     -- Q25 < x <= Q75
+        ELSE 'High-Value Customers'                                     -- Q75 < x <= max
     END AS customer_class 
 FROM per_customer pc
 CROSS JOIN quartiles
