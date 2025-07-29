@@ -1,25 +1,26 @@
 # 🧩 About Project 
-This project showcases my SQL skills through the design, population, and analysis of a relational database built to simulate a real-world grocery sales environment. The dataset, obtained from Kaggle, spans four months of transactional and operational data, including customers, products, employees, cities, and countries.
+This project presents a relational PostgreSQL database designed to analyze a grocery sales dataset sourced from Kaggle. The dataset captures real-world transactional activity and models key entities including sales, customers, products, employees, and geographic regions across 128 days. Through a series of business-driven SQL queries, the project explores core analytical questions related to revenue trends, product performance, customer segmentation, employee effectiveness, and regional sales distribution.
 
-🔗 Dataset Source: [Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14)
+🔗 Dataset Source: ([Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14))
 
 # 💡Objectives
 
-| Objective | Description                                                                 |
-|-----------|-----------------------------------------------------------------------------|
-| **Q1**        | Analyze sales trends by month, total revenue, transaction count, and date range. |
-| **Q2**        | Identify top/bottom products by revenue and demand.  |
-| **Q3**        | Segment customers by spend; find top buyers and calculate Average Order Value and basket size. |
-| **Q4**        | Evaluate sales staff by total/weekly revenue, share, and experience.       |
-| **Q5**        | Analyze regional performance by city and category revenue.                        |
+| Objective | Updated Description                                                                 |
+|-----------|--------------------------------------------------------------------------------------|
+| **Q1**    | Track sales performance over time, including monthly revenue, transaction count, and date range. |
+| **Q2**    | Identify high- and low-performing products based on sales volume and revenue contribution. |
+| **Q3**    | Classify customers by spending behavior and calculate AOV and average basket size.     |
+| **Q4**    | Evaluate employee performance using revenue metrics and examine correlations with experience or age. |
+| **Q5**    | Analyze regional sales across cities and countries to identify top-performing markets. |
 
-# 🛠️ Database Creation
-## 🗃️ Database Creation 
+
+# 🛠️ Database Setup & Data Preparation
+## 🗃️ Step 1: Creating the PostgreSQL Database 
 Created an empty PostgreSQL database named "grocery" using:
 ```sql
 CREATE DATABASE grocery;
 ```
-## 📐Schema Design,  & Table Creation  
+## 📐 Step 2: Designing the Schema & Creating Tables
 The database schema was designed using appropriate data types, primary keys, and foreign keys to maintain referential integrity. Tables include sales, products, categories, customers, employees, cities and countries. 
 
 Example snippet:
@@ -40,7 +41,7 @@ CREATE TABLE sales (
   );
 ```
 - **🔗 Related SQL File:** [**Create_Tables.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Create_Tables.sql)
-## 📥 Importing Data 
+## 📥 Step 3: Importing CSV Data into Tables
 All tables were populated with real CSV data using PostgreSQL's efficient COPY command.
 
 ```text
@@ -54,9 +55,9 @@ COMMIT;
 
 Wapping the commands in BEGIN...COMMIT block is to ensure transactional integrity.
 
-# 💻 Building Queries For Project Objectives
+# 💻 Analytical Queries & Key Insights
 The analysis phase focused on answering real business questions using SQL queries. The focus is on SQL but simple illustrations are also provided for visualizing the query outputs in some cases.
-## 📈 Q1: Analyze sales trends by month, total revenue, transaction count, and date range.
+## 📈 Q1: Analyze Sales Performance Over Time
 Before getting started with different tasks related to revenue, the total price column should be calculated as it is empty. Based on columns available in sales, and product tables, the values are calculated and inserted into table via the query below
 ```sql
 UPDATE sales
@@ -76,11 +77,10 @@ GROUP BY TO_CHAR(sale_date, 'Month'), EXTRACT(MONTH FROM sale_date)
 ORDER BY EXTRACT(MONTH FROM sale_date);
 ```
 Key outcomes:
-  - Period: 2018/01/01 to 2018/05/09 (about 4 months)
-  - Number of transactions: 6,758,125 
-  - Total Revenue: 4,332,478,963 $ 
-  - The highest monthly revenue is related to March (1,032,208,708 $).
-  - The Confections category generates the highest revenue among all product categories.
+  - Timeframe: 2018/01/01 to 2018/05/09 
+  - Transactions: ~6.7M | Revenue: $4.33B
+  - March was the peak revenue month ($1.03B)
+  - Confections was the top-earning product category
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/c0ef8527-6a49-4987-9351-0a7814ca6c3b" width="600">
@@ -88,13 +88,13 @@ Key outcomes:
   
 🔗 Related SQL File: [**Q1.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q1.sql)
  
-## 🔍 Q2: Identify top/bottom products by revenue and demand
+## 🔍 Q2: Analyze Product Performance by Volume and Revenue
 The example query below shows how the top 10 highest-demand products are characterized based on the number of sold products.
 ```sql
 -- Top 10 Highest-demand Products
 SELECT 
     products.product_name,
-    Count(sales.product_id) AS n_sold_items   -- number of sold items
+    Count(sales.product_id) AS n_sold_items 
 FROM products
 LEFT JOIN sales ON products.product_id = sales.product_id
 GROUP BY products.product_name
@@ -102,9 +102,9 @@ ORDER BY n_sold_items DESC
 LIMIT 10;
 ```
 Key outcomes:
-  - As reported in figure below, the highest-demanded product was "Longos - Chicken Wings", and the lowest-demand product was "Spice - Peppercorn Melange".
-  - The top products in terms of generated revenue was "Bread - Calabrese Baguette". On the other hand, the lowest revenue is related to "Bread Crumbs - Japense Style". 
-
+  - Top-selling product: Longos - Chicken Wings
+  - Highest revenue: Bread - Calabrese Baguette
+  - Lowest performers: Peppercorn Melange (by volume), Japanese Bread Crumbs (by revenue)
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/04802fac-d1fb-4ff0-8ae7-c49de44054b5" width="700">
@@ -113,8 +113,8 @@ Key outcomes:
 🔗 Related SQL File: [**Q2.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q2.sql)
 
 
-## 🛒 Q3: Segment customers by spend; find top buyers and calculate Average Order Value and basket size
-The customers are classified based on their total expenditure. For this purpose, the total spending of each customer is calculated, and then based on 25% and 75% percentile thresholds, costumers are placed into three buckets or groups including low spenders, mid-tier spenders, and high-value customers.
+## 🛒 Q3: Segment Customers and Analyze Order Metrics
+The customers are classified based on their total expenditure. For this purpose, the total spending of each customer is calculated, and then based on 25% and 75% percentile thresholds, customers are placed into three buckets or groups including low spenders, mid-tier spenders, and high-value customers.
 ```sql
 WITH per_customer AS (
     SELECT 
@@ -143,10 +143,12 @@ CROSS JOIN quartiles
 ORDER BY pc.total_revenue DESC;
 ```
 Key outcomes:
-  - Average Order Value (AOV): 641.08 $
-  - Average bucket size: 13
-  - Customers are classified based on their total spending into three groups.
-  - Top ten customers with highest purchases are characterized. 
+  - AOV: $641 | Avg. basket size: 13 items
+  - Customers segmented into three classes: 
+      - Low Spenders: Customers with total purchases below approximately $22.3K (25th percentile)
+      - Mid-Tier Spenders: Customers whose spending falls between approximately $22.3K and $63.8K (25th to 75th percentile)
+      - High-Value Customers: Customers spending above approximately $63.8K (75th percentile), representing the top spenders driving significant revenue.
+  - Top 10 customers ranked by total purchases
 
 
 <p align="center">
@@ -156,15 +158,13 @@ Key outcomes:
 🔗 Related SQL File: [**Q3.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q3.sql)
 
 
-## 🧑‍💼 Q4: Evaluate sales staff by total/weekly revenue, share, and experience.
+## 🧑‍💼 Q4: Evaluate Sales Staff Performance and Experience Impact
 This query extracts the top three employees ranked by their average daily revenue, using distinct workdays for accuracy.
 
 ```sql
--- Top 3 Employees by Average Daily Revenue
 SELECT 
 CONCAT(employees.first_name, ' ', employees.middle_initial, ' ', employees.last_name) AS full_name,
--- average based on the distinct number of work days (rounded for better representation of outcomes)
-Round((SUM(total_price)/Count(distinct sales.sale_date::Date)),0) AS average_daily_revenue
+Round((SUM(total_price)/Count(distinct sales.sale_date::Date)),0) AS average_daily_revenue  -- based on the distinct number of work days 
 FROM sales
 RIGHT JOIN employees ON sales.employee_id = employees.employee_id
 GROUP BY first_name, middle_initial, last_name
@@ -173,27 +173,26 @@ LIMIT 3;
 ```
 
 Key outcomes:
-  - The top three employees based on average daily revenue are identified. However, the differences in revenue among them are minimal when considering their total sales values or their weekly revenue contributions.
-  - Neither the employee’s age nor their job experience shows a significant correlation with revenue generation (look at the illustrated figure below). This suggests that factors other than seniority or experience—such as individual sales skill, motivation, or customer interaction quality—may play a more critical role in sales performance.
+  - Top 3 employees ranked by average daily revenue
+  - Small revenue differences relative to total generated revenue, showing relatively similar performance of all employees
+  - Age and experience show little effect on revenue, implying performance depends more on sales abilities and customer rapport than seniority
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/0b0d61b0-9f18-4ee6-9ae4-b86409652ef9" width="325">
-</p>
-
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/a9ca2026-36a3-4713-add8-4fb3b4185c67" width="525">
-</p>
+<table>
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/0b0d61b0-9f18-4ee6-9ae4-b86409652ef9" width="350"/></td>
+    <td><img src="https://github.com/user-attachments/assets/a9ca2026-36a3-4713-add8-4fb3b4185c67" width="450"/></td>
+  </tr>
+</table>
 
 
 
 🔗 Related SQL Files: [**Q4_part1.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part1.sql), [**Q4_part2.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part2.sql), [**Q4_part3.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q4_part3.sql)
 
 
-## 🌍 Q5: Analyze regional performance by city and category revenue.
-Below, shows a query to obtain the list of top five cities...
+## 🌍 Q5: Assess Regional Sales Performance Across Cities and Countries
+The following query retrieves the top five cities by total revenue.
 
 ```sql
--- Top 5 Cities by Sales Revenue
 SELECT 
     ci.city_name,
     ROUND(SUM(s.total_price), 0) AS total_revenue
@@ -206,24 +205,29 @@ limit 5;
 ```
 
 Key outcomes:
-  - The dataset contains sales data exclusively from the United States. The inclusion of a countries table likely reflects a forward-thinking design choice by the database architect, anticipating future expansion.
-  - The top five cities by total sales revenue, in descending order, are: Tucson, Jackson, Sacramento, Fort Wayne, and Indianapolis.
+  - All sales occurred in the U.S.; countries table allows for future expansion
+  - Top cities by revenue: Tucson, Jackson, Sacramento, Fort Wayne, Indianapolis
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/859b9097-e363-4067-84d9-ec0e91207b92" width="275">
+  <img src="https://github.com/user-attachments/assets/859b9097-e363-4067-84d9-ec0e91207b92" width="250">
 </p>
   - The Confections category generates the highest revenue among all product categories.
 
 🔗 Related SQL File: [**Q5.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Q5.sql)
 
-#  📌 Strategic Recommendations / Futher Steps 
-correlation of age and experience maybe ?
 
- Add visual dashboards (e.g., via Power BI or Tableau)
+# 📌 Conclusion & Strategic Recommendations
 
- Implement stored procedures for monthly reports
+This project highlights the analytical value of well-structured SQL queries in uncovering actionable insights from transactional data. Over 6.7 million sales records were processed to reveal key trends:
 
- Add more advanced analytics: e.g., customer lifetime value or employee conversion rates
+- **Revenue peaked in March**, with the **Confections** category emerging as the most profitable.
+- **"Longos - Chicken Wings"** led in unit sales, while **"Bread - Calabrese Baguette"** generated the highest revenue.
+- Customers could be segmented effectively into spend-based tiers. This segmentation could be used to design tier-specific promotions—offering loyalty rewards to high-value customers or bundled discounts to mid-tier spenders to boost retention and upselling.
+- The **average order value (AOV)** was $641, with an **average basket size** of 13 items—indicating solid cross-selling performance and potential for further bundling strategies.
+- Sales staff performance showed **minimal correlation with age or experience**, suggesting that **training programs should focus more on sales techniques and soft skills** rather than tenure.
+- Cities like **Tucson and Jackson** emerged as top-performing markets. To sustain growth in these regions, operations teams should prioritize **inventory optimization, timely deliveries, and personalized local offers** to ensure customer satisfaction and avoid fulfillment delays.
+
+
 
 
 
