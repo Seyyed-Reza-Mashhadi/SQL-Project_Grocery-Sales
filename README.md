@@ -23,7 +23,7 @@ Created an empty PostgreSQL database named "grocery" using:
 CREATE DATABASE grocery;
 ```
 ### 📐 Step 2: Designing the Schema & Creating Tables
-The database schema was designed using appropriate data types, primary keys, and foreign keys to maintain referential integrity. Tables include sales, products, categories, customers, employees, cities and countries. 
+The database schema was designed using appropriate data types, primary keys, and foreign keys to maintain referential integrity. Tables include sales, products, categories, customers, employees, cities, and countries.
 
 Example snippet:
 ```sql
@@ -42,6 +42,9 @@ CREATE TABLE sales (
     FOREIGN KEY (product_id) REFERENCES products(product_id)
   );
 ```
+  - ⚠️ **Attention:**
+    It is important to note that the schema was modeled based on the structure defined in the original Kaggle dataset description, which follows a normalized, multi-table design with separate tables for entities like cities and countries. This design introduces some indirect relationships in the database (e.g., customers and employees both connecting to countries through cities), which can lead to ambiguity in analytical contexts if not handled carefully. I addressed this challenge in a separate project ([link to my Power BI project]), where I resolved the ambiguity through targeted ETL steps. For this SQL project, I intentionally preserved the original schema to reflect how real-world data is often delivered. This approach provided a solid foundation for practicing SQL join logic, referential integrity, and relational data modeling.
+
 - **🔗 Related SQL File:** [**Create_Tables.sql**](https://github.com/Seyyed-Reza-Mashhadi/SQL-Project_Grocery-Sales/blob/main/SQL_files/Create_Tables.sql)
 ### 📥 Step 3: Importing CSV Data into Tables
 All tables were populated with real CSV data using PostgreSQL's efficient COPY command.
