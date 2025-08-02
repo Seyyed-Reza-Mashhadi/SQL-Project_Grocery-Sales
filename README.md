@@ -228,7 +228,7 @@ This project highlights the analytical value of well-structured SQL queries in u
 - **Revenue peaked in March**, with the **Confections** category emerging as the most profitable.
 - **"Longos - Chicken Wings"** led in unit sales, while **"Bread - Calabrese Baguette"** generated the highest revenue.
 - Customers could be segmented effectively into spend-based tiers. This segmentation could be used to design tier-specific promotions—offering loyalty rewards to high-value customers or bundled discounts to mid-tier spenders to boost retention and upselling.
-- The **average order value (AOV)** was $641, with an **average basket size** of 13 items—indicating solid cross-selling performance and potential for further bundling strategies.
+- The **average order value (AOV)** was **$641**, with an **average basket size** of **13 items**—indicating solid cross-selling performance and potential for further bundling strategies.
 - Sales staff performance showed **minimal correlation with age or experience**, suggesting that **training programs should focus more on sales techniques and soft skills** rather than tenure.
 - Cities like **Tucson and Jackson** emerged as top-performing markets. To sustain growth in these regions, operations teams should prioritize **inventory optimization, timely deliveries, and personalized local offers** to ensure customer satisfaction and avoid fulfillment delays.
 
