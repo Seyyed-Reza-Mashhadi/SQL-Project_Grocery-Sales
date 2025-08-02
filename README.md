@@ -3,7 +3,7 @@
 ## 🧩 About Project 
 This project presents a relational PostgreSQL database designed to analyze a grocery sales dataset sourced from Kaggle. The dataset captures real-world transactional activity and models key entities including sales, customers, products, employees, and geographic regions across 128 days. Through a series of business-driven SQL queries, the project explores core analytical questions related to revenue trends, product performance, customer segmentation, employee effectiveness, and regional sales distribution.
 
-🔗 Dataset Source: [Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14)
+🔗 **Dataset Source:** [Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14)
 
 ## 💡Objectives
 
@@ -233,6 +233,9 @@ This project highlights the analytical value of well-structured SQL queries in u
 - Cities like **Tucson and Jackson** emerged as top-performing markets. To sustain growth in these regions, operations teams should prioritize **inventory optimization, timely deliveries, and personalized local offers** to ensure customer satisfaction and avoid fulfillment delays.
 
 
+## 🔁 Related Project
+
+- 📊 [Power BI Dashboard – Grocery Sales](https://github.com/Seyyed-Reza-Mashhadi/PowerBI-Project_Grocery-Sales): An interactive dashboard that visually explores key trends from this SQL project — including sales performance, product demand, customer spending metrics, employee highlights, and regional insights.
 
 
 
