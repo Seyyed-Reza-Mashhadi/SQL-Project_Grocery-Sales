@@ -1,4 +1,4 @@
- <h1 align="center">Grocery Sales Dataset</h1> 
+ <h1 align="center">Grocery Sales Dataset Queries</h1> 
  
 ## 🧩 About Project 
 This project presents a relational PostgreSQL database designed to analyze a grocery sales dataset sourced from Kaggle. The dataset captures real-world transactional activity and models key entities including sales, customers, products, employees, and geographic regions across 128 days. Through a series of business-driven SQL queries, the project explores core analytical questions related to revenue trends, product performance, customer segmentation, employee effectiveness, and regional sales distribution.
