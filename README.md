@@ -6,9 +6,10 @@ This project presents a relational PostgreSQL database designed to analyze a gro
 🔗 **Dataset Source:** [Grocery Sales Dataset on Kaggle](https://www.kaggle.com/datasets/155a87ba8d7e92c5896ddc7f3ca3e3fa9c799207ed8dbf9a1cedf2e2e03e3c14)
 
 ## 💡Objectives
+The project's key objectives were to answer the following business questions:
 
 | Objective | Updated Description                                                                 |
-|-----------|--------------------------------------------------------------------------------------|
+|:-----------:|--------------------------------------------------------------------------------------|
 | **Q1**    | Track sales performance over time, including monthly revenue, transaction count, and date range. |
 | **Q2**    | Identify high- and low-performing products based on sales volume and revenue contribution. |
 | **Q3**    | Classify customers by spending behavior and calculate AOV and average basket size.     |
