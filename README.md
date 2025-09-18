@@ -239,6 +239,7 @@ This project highlights the analytical value of well-structured SQL queries in u
 - 📊 [**Power BI Dashboard**](https://github.com/Seyyed-Reza-Mashhadi/Power-BI-Project_Grocery-Sales): An interactive dashboard that visually explores key trends from this SQL project — including sales performance, product demand, customer spending metrics, employee highlights, and regional insights.
 - 📊 [**Tableau Dashboard**](https://github.com/Seyyed-Reza-Mashhadi/Tableau-Project_Grocery-Sales): Interactive two-page dashboard built on the same dataset to showcase Tableau features, including Tableau Prep Builder workflows, interactivity, navigation, and cross-dashboard linking.
 - ☁️ [**Azure Data Factory Project**](https://github.com/Seyyed-Reza-Mashhadi/Azure-Data-Factory-Project): Implements a complete ETL pipeline for data orchestration using Azure Data Factory, ADLS, and Azure SQL Database.
+- ☁️ [**Azure Synapse Analytics Project**](https://github.com/Seyyed-Reza-Mashhadi/Azure-Synapse-Analytics-Project): This project is a hands-on exploration of Azure Synapse Analytics, showing how to use Serverless SQL, Dedicated SQL, and Spark to balance cost, performance, and use-case needs.
 
 
 
